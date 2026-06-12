@@ -1,0 +1,8 @@
+  "bugbouncers.com": {
+    brand: "Bug Bouncers",
+    inbox: "leads@bugbouncers.com",
+    thankyou: "https://bugbouncers.com/thank-you",
+    type: "pest",
+    vertical_label: "pest control",
+    notify: ["leads@bugbouncers.com","dan@procuremedia.com"],
+  },

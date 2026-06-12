@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ant Control: Treatment For Every Type Of Ant | Bug Bouncers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) — GA4 + Google Ads (standard across all pages) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+</script>
+<!-- Procure click-source capture: stores gclid/UTM on landing, attaches to the form -->
+<script>
+(function(){
+  try{
+    var qs = new URLSearchParams(window.location.search);
+    var keys = ['gclid','gbraid','wbraid','utm_source','utm_medium','utm_campaign','utm_term','utm_content'];
+    var store = {};
+    try{ var c=(document.cookie.match(/(?:^|; )pm_attr=([^;]*)/)||[])[1]; if(c) store=JSON.parse(decodeURIComponent(c))||{}; }catch(e){ store={}; }
+    var got=false;
+    keys.forEach(function(k){ var v=qs.get(k); if(v){ store[k]=v; got=true; } });
+    if(got || !store.landing){
+      if(!store.landing) store.landing=window.location.pathname;
+      if(!store.referrer) store.referrer=document.referrer||'';
+      document.cookie='pm_attr='+encodeURIComponent(JSON.stringify(store))+'; path=/; max-age=7776000; SameSite=Lax';
+    }
+    function fill(){
+      var f=document.querySelector('form'); if(!f) return;
+      Object.keys(store).forEach(function(k){
+        if(store[k] && !f.querySelector('[name="'+k+'"]')){
+          var i=document.createElement('input'); i.type='hidden'; i.name=k; i.value=store[k]; f.appendChild(i);
+        }
+      });
+    }
+    if(document.readyState!=='loading') fill(); else document.addEventListener('DOMContentLoaded', fill);
+  }catch(e){}
+})();
+</script>
+  <meta name="description" content="Carpenter, fire, sugar and household ants — learn how professional ant control works and get a free quote from a licensed local exterminator.">
+  <link rel="canonical" href="https://bugbouncers.com/ant-control">
+  <style>
+    body{font-family:Arial, sans-serif;background:#F4FBF6;margin:0;color:#14241E;line-height:1.7;}
+    .container{max-width:940px;margin:50px auto;background:#fff;padding:44px;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.08);}
+    .eyebrow{display:inline-block;background:#fff4dd;color:#c77d00;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px;}
+    h1{color:#0E5A4A;font-size:42px;line-height:1.15;margin:0 0 18px;}
+    h2{color:#0E5A4A;margin-top:36px;font-size:28px;}
+    p,li{color:#3d4b5f;font-size:17px;}
+    ul{padding-left:22px;}
+    .cta{background:#0E5A4A;color:white;padding:30px;border-radius:14px;margin-top:42px;text-align:center;}
+    .cta h2{color:white;margin-top:0;}
+    .cta p{color:#d7e4ef;}
+    .btn{display:inline-block;background:#FF7A2D;color:#fff;padding:15px 24px;border-radius:10px;font-weight:bold;text-decoration:none;margin-top:12px;}
+    footer{max-width:940px;margin:0 auto 40px;text-align:center;font-size:13px;color:#5E7268;}
+    footer a{color:#0E5A4A;text-decoration:none;margin:0 6px;}
+    @media(max-width:700px){.container{margin:0;border-radius:0;padding:28px 22px;}h1{font-size:32px;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="eyebrow">Ant Control</div>
+    <h1>Ant Control: Get Rid Of Ants At The Source</h1>
+    <p>Ants are the most common household pest, and store-bought sprays often make colonies split and spread. Professional ant control targets the nest and the queen, which is the only way to truly end the problem.</p>
+    <p>Bug Bouncers connects you with a licensed pro who identifies the species and treats it the right way.</p>
+    <h2>Common Ant Problems</h2>
+    <ul>
+      <li>Carpenter ants that damage wood structures</li>
+      <li>Fire ants with painful, aggressive stings</li>
+      <li>Sugar and odorous house ants in kitchens</li>
+      <li>Pavement ants along driveways and foundations</li>
+    </ul>
+    <h2>How Professional Ant Control Works</h2>
+    <p>A technician identifies the ant species and uses targeted baits and treatments that workers carry back to the colony, eliminating it at the source.</p>
+    <ul>
+      <li>Species identification and colony location</li>
+      <li>Targeted baiting that reaches the queen</li>
+      <li>Interior and exterior barrier treatments</li>
+      <li>Prevention tips to keep ants out</li>
+    </ul>
+    <h2>Why DIY Falls Short</h2>
+    <p>Spraying the ants you see kills a fraction of the colony and can trigger budding, creating multiple nests. Professional baiting solves the root problem.</p>
+    <div class="cta">
+      <h2>Get A Free Ant Control Quote</h2>
+      <p>Match with a licensed local exterminator for a free, no-obligation ant control quote.</p>
+      <a class="btn" href="/">Get My Free Quote →</a>
+    </div>
+  </div>
+  <footer>
+    © 2026 Bug Bouncers. All rights reserved. |
+    <a href="/">Home</a> |
+    <a href="/privacy-policy.html">Privacy Policy</a> |
+    <a href="/terms.html">Terms of Use</a>
+  </footer>
+</body>
+</html>
