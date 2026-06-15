@@ -148,6 +148,38 @@ footer a{color:#A7BED1;display:block;margin-bottom:12px;}
   .form-stats{flex-wrap:wrap;}
   .form-stat{flex:1 1 45%;}
 }
+
+/* ---- multi-step form (form_type: multistep) ---- */
+.ms-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);color:var(--text);overflow:hidden;border:1px solid rgba(11,53,88,.06);}
+.ms-head{background:var(--navy);padding:22px 28px 18px;}
+.ms-head h3{font-size:24px;margin-bottom:4px;line-height:1.15;color:#fff;}
+.ms-head p{color:rgba(255,255,255,.85);font-size:14px;margin:0;}
+.ms-progress{padding:18px 28px 0;}
+.ms-progress-meta{display:flex;justify-content:space-between;font-size:12px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.ms-track{height:7px;background:var(--line);border-radius:99px;overflow:hidden;}
+.ms-bar{height:100%;width:25%;background:var(--cta);border-radius:99px;transition:width .35s ease;}
+.ms-body{padding:20px 24px 22px;background:#F5F8FC;}
+.ms-step{display:none;}
+.ms-step.active{display:block;animation:msfade .25s ease;}
+@keyframes msfade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+.ms-q{font-size:19px;font-weight:800;color:var(--navy-dark);line-height:1.3;margin-bottom:5px;}
+.ms-help{font-size:13.5px;color:var(--muted);margin-bottom:16px;}
+.ms-choices{display:grid;gap:9px;}
+.ms-choice{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:15px;font-weight:600;color:var(--text);cursor:pointer;transition:.15s ease;font-family:inherit;box-shadow:0 1px 2px rgba(11,53,88,.05);}
+.ms-choice:hover{border-color:var(--cta);transform:translateY(-1px);box-shadow:0 6px 16px rgba(11,53,88,.10);}
+.ms-ic{width:28px;height:28px;border-radius:8px;background:#EEF3F8;display:flex;align-items:center;justify-content:center;font-size:15px;flex:0 0 auto;}
+.ms-arr{margin-left:auto;color:var(--cta);font-weight:800;opacity:.65;}
+.ms-choice:hover .ms-arr{opacity:1;}
+.ms-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.ms-fields .full{grid-column:1/-1;}
+.ms-reassure{font-weight:700;color:var(--text);margin:2px 0 14px;font-size:15px;}
+.ms-submit{width:100%;display:flex;justify-content:center;margin-top:14px;padding:18px 24px;font-size:18px;}
+.ms-privacy{display:block;margin-top:10px;font-size:12px;color:#8A97A5;text-align:center;}
+.ms-back{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:13px;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;font-family:inherit;}
+.ms-back:hover{color:var(--navy);}
+.ms-back.hide{display:none;}
+.ms-card .form-stats{border:none;border-top:1px solid var(--line);border-radius:0;margin:0;}
+.ms-card select{-webkit-appearance:none;appearance:none;padding-right:44px;cursor:pointer;background-image:url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='12'%20height='8'%20viewBox='0%200%2012%208'%3E%3Cpath%20d='M1%201l5%205%205-5'%20stroke='%236E7A8A'%20stroke-width='2'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;background-size:12px 8px;}
 </style>
 </head>
 <body>
@@ -176,37 +208,57 @@ footer a{color:#A7BED1;display:block;margin-bottom:12px;}
 <a href="#form" class="btn btn-primary">Get My Free Quote →</a>
 </div>
 
-<div class="form-card" id="form">
-<div class="form-head"><h3>Get Your Free Pest Control Quote</h3><p>Tell us what's bugging you and we'll match you with a licensed local pro. Fast, free, no obligation.</p></div>
-<div class="form-stats"><div class="form-stat"><strong>24/7</strong><span>Response</span></div><div class="form-stat"><strong>50</strong><span>States</span></div><div class="form-stat"><strong>100%</strong><span>Free</span></div><div class="form-stat"><strong>Licensed</strong><span>Pros</span></div></div>
-
-<form action="https://procure-lead-engine.dan-fda.workers.dev/submit" method="POST">
+<div class="ms-card" id="form">
+<div class="ms-head"><h3 id="msHead">Get Your Free Pest Control Quote</h3><p id="msSub">3 quick questions. About 60 seconds. Free, no obligation.</p></div>
+<div class="ms-progress">
+  <div class="ms-progress-meta"><span id="msStepLabel">Step 1 of 4</span><span id="msHint">Quick &amp; easy</span></div>
+  <div class="ms-track"><div class="ms-bar" id="msBar"></div></div>
+</div>
+<form action="https://procure-lead-engine.dan-fda.workers.dev/submit" method="POST" id="msForm">
   <input type="hidden" name="lead_source" value="bugbouncers.com" />
+  <input type="hidden" name="site" value="bugbouncers.com" />
   <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off" aria-hidden="true" />
   <input type="hidden" name="_redirect" value="https://bugbouncers.com/thank-you">
-<div class="form-grid">
-<div class="full"><input type="text" name="name" placeholder="Your Name" required></div>
-<div><input type="email" name="email" placeholder="Email Address" required></div>
-<div><input type="tel" name="phone" placeholder="Phone Number" autocomplete="tel" inputmode="tel" pattern="[\d\s\-\(\)\.]{10,20}" required></div>
-<div class="full"><input type="text" name="address" placeholder="Property Address or City" required></div>
-<div><select name="community_size" required><option value="">Property Type</option><option>Home</option><option>Apartment / Condo</option><option>Business / Commercial</option><option>Other</option></select></div>
-<div><select name="role" required><option value="">Pest Problem</option><option>Scorpions</option><option>Bed Bugs</option><option>Termites</option><option>Rodents (Mice / Rats)</option><option>Roof / Pack Rats</option><option>Wildlife / Animal Removal</option><option>Snakes</option><option>Pigeons / Birds</option><option>Ants</option><option>Cockroaches</option><option>Mosquitoes / Outdoor</option><option>Other / Not Sure</option></select></div>
-<div class="full">
-<p style="font-weight:700; color:var(--text); margin:4px 0 14px; font-size:16px;">Same-day appointments available in most areas.</p>
-<!-- Spam protection: Cloudflare Turnstile (safe/hidden until a sitekey is set) -->
-<div class="cf-turnstile" data-sitekey="" data-size="flexible" style="margin:0 0 12px"></div>
-<script>(function(){var d=document.currentScript.previousElementSibling,k=d&&d.getAttribute('data-sitekey');if(k&&k.indexOf('{{')<0&&k.length>5){var s=document.createElement('script');s.src='https://challenges.cloudflare.com/turnstile/v0/api.js';s.async=s.defer=true;document.head.appendChild(s);}else if(d){d.style.display='none';}})();</script>
-<button class="btn btn-primary submit-btn" type="submit">Get My Free Quote →</button>
-<p class="privacy-note">🔒 Your information is never sold or shared.</p>
-<p class="secondary-label">Need help with anything else?</p>
-<div class="secondary-services-grid"><label><input type="checkbox" name="review[]" value="Recurring Service Plan">Recurring Service Plan</label>
-<label><input type="checkbox" name="review[]" value="One-Time Treatment">One-Time Treatment</label>
-<label><input type="checkbox" name="review[]" value="Free Inspection">Free Inspection</label>
-<label><input type="checkbox" name="review[]" value="Commercial / Multi-Unit">Commercial / Multi-Unit</label></div>
-</div>
-</div>
-<div class="tcpa">By clicking "Get My Free Quote," you expressly consent to be contacted by Bug Bouncers and its pest control service partners regarding pest control and removal services by phone, text message, and email, including through automated technology and prerecorded messages. Consent is not required as a condition of purchase.</div>
+  <input type="hidden" name="pm_sid" id="pm_sid" value="" />
+  <input type="hidden" name="variant" value="multistep" />
+  <input type="hidden" name="property_type" id="f_property_type" value="" />
+  <input type="hidden" name="pest" id="f_pest" value="" />
+  <input type="hidden" name="urgency" id="f_urgency" value="" />
+  <div class="ms-body">
+    <div class="ms-step active" data-step="1">
+      <div class="ms-q">Where do you need pest control?</div>
+      <div class="ms-help">Pick the closest match.</div>
+      <div class="ms-choices" data-target="property_type"></div>
+    </div>
+    <div class="ms-step" data-step="2">
+      <div class="ms-q">What's the problem?</div>
+      <div class="ms-help">Choose the main pest — or the closest.</div>
+      <div class="ms-choices" data-target="pest"></div>
+    </div>
+    <div class="ms-step" data-step="3">
+      <div class="ms-q">How soon do you need help?</div>
+      <div class="ms-help">We'll match the right local pro.</div>
+      <div class="ms-choices" data-target="urgency"></div>
+    </div>
+    <div class="ms-step" data-step="4">
+      <div class="ms-q" id="msContactQ">Last step — let's connect.</div>
+      <p class="ms-reassure" id="msReassure">Tell us where to reach you and a licensed local pro follows up fast with your free quote — often same day.</p>
+      <div class="ms-fields">
+        <div class="full"><input type="text" name="name" placeholder="Your Name" autocomplete="name" required></div>
+        <div><input type="email" name="email" placeholder="Email Address" autocomplete="email" required></div>
+        <div><input type="tel" name="phone" placeholder="Phone Number" autocomplete="tel" inputmode="tel" pattern="[\d\s\-\(\)\.]{10,20}" required></div>
+        <div class="full"><input type="text" name="address" placeholder="Property Address or City" required></div>
+      </div>
+      <div class="cf-turnstile" data-sitekey="" data-size="flexible" style="margin:14px 0 4px"></div>
+      <script>(function(){var d=document.currentScript.previousElementSibling,k=d&&d.getAttribute('data-sitekey');if(k&&k.indexOf('{{')<0&&k.length>5){var s=document.createElement('script');s.src='https://challenges.cloudflare.com/turnstile/v0/api.js';s.async=s.defer=true;document.head.appendChild(s);}else if(d){d.style.display='none';}})();</script>
+      <button class="btn btn-primary ms-submit" type="submit">Get My Free Quote →</button>
+      <span class="ms-privacy">🔒 Your information is never sold or shared.</span>
+      <div class="tcpa">By clicking "Get My Free Quote," you expressly consent to be contacted by Bug Bouncers and its pest control service partners regarding pest control and removal services by phone, text message, and email, including through automated technology and prerecorded messages. Consent is not required as a condition of purchase.</div>
+    </div>
+    <button type="button" class="ms-back hide" id="msBack">← Back</button>
+  </div>
 </form>
+<div class="form-stats"><div class="form-stat"><strong>24/7</strong><span>Response</span></div><div class="form-stat"><strong>50</strong><span>States</span></div><div class="form-stat"><strong>100%</strong><span>Free</span></div><div class="form-stat"><strong>Licensed</strong><span>Pros</span></div></div>
 </div>
 </div>
 </section>
@@ -309,6 +361,70 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+</script>
+<script>
+(function(){
+  var STEPS = [{"field":"property_type","options":[{"icon":"🏠","label":"Home","value":"Home"},{"icon":"🏢","label":"Apartment / Condo","value":"Apartment / Condo"},{"icon":"🏬","label":"Business / Commercial","value":"Business / Commercial"},{"icon":"❓","label":"Other","value":"Other"}]},{"field":"pest","options":[{"icon":"🛏️","label":"Bed bugs","value":"Bed Bugs"},{"icon":"🪵","label":"Termites","value":"Termites"},{"icon":"🐀","label":"Rodents (mice / rats)","value":"Rodents (Mice / Rats)"},{"icon":"🦝","label":"Wildlife / animal removal","value":"Wildlife / Animal Removal"},{"icon":"🦂","label":"Scorpions","value":"Scorpions"},{"icon":"🐜","label":"Ants","value":"Ants"},{"icon":"🪳","label":"Cockroaches","value":"Cockroaches"},{"icon":"🦟","label":"Mosquitoes / outdoor","value":"Mosquitoes / Outdoor"},{"icon":"❓","label":"Something else","value":"Other / Not Sure"}]},{"field":"urgency","options":[{"icon":"🚨","label":"Emergency — ASAP","value":"Emergency / ASAP"},{"icon":"📅","label":"Within a few days","value":"Within a few days"},{"icon":"💬","label":"Just getting quotes","value":"Just getting quotes"}]}];
+  var ANGLES = null;
+  var SITE = "bugbouncers.com";
+  var ENGINE = "https://procure-lead-engine.dan-fda.workers.dev";
+  var sid = 'pm-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,8);
+  var sidEl = document.getElementById('pm_sid'); if (sidEl) sidEl.value = sid;
+
+  var qs = new URLSearchParams(location.search);
+  var angle = (qs.get('angle') || qs.get('utm_content') || 'default').toLowerCase();
+  if (ANGLES && ANGLES[angle]) {
+    var A = ANGLES[angle];
+    if (A.head)  { var eh=document.getElementById('msHead');     if(eh) eh.textContent=A.head; }
+    if (A.sub)   { var es=document.getElementById('msSub');      if(es) es.textContent=A.sub; }
+    if (A.reassure){ var er=document.getElementById('msReassure'); if(er) er.textContent=A.reassure; }
+  }
+
+  STEPS.forEach(function(st){
+    var box = document.querySelector('[data-target="'+st.field+'"]'); if(!box) return;
+    (st.options||[]).forEach(function(opt){
+      var b=document.createElement('button'); b.type='button'; b.className='ms-choice';
+      b.innerHTML='<span class="ms-ic">'+opt.icon+'</span><span>'+opt.label+'</span><span class="ms-arr">→</span>';
+      b.addEventListener('click', function(){ var inp=document.getElementById('f_'+st.field); if(inp) inp.value=opt.value; next(); });
+      box.appendChild(b);
+    });
+  });
+
+  var steps = [].slice.call(document.querySelectorAll('.ms-step'));
+  var total = steps.length, cur = 0, reached = 0;
+  var bar=document.getElementById('msBar'), label=document.getElementById('msStepLabel'), hint=document.getElementById('msHint'), back=document.getElementById('msBack');
+  var hints=['Quick & easy','Almost there','Almost done','Last step'];
+  function render(){
+    steps.forEach(function(s,i){ s.classList.toggle('active', i===cur); });
+    if(bar) bar.style.width=Math.round(((cur+1)/total)*100)+'%';
+    if(label) label.textContent='Step '+(cur+1)+' of '+total;
+    if(hint) hint.textContent=hints[Math.min(cur,hints.length-1)]||'';
+    if(back) back.classList.toggle('hide', cur===0);
+    ping();
+  }
+  function next(){ if(cur<total-1){ cur++; render(); } }
+  function prev(){ if(cur>0){ cur--; render(); } }
+  if(back) back.addEventListener('click', prev);
+
+  function ping(){
+    reached = Math.max(reached, cur+1);
+    try{
+      var ans={}; STEPS.forEach(function(st){ var i=document.getElementById('f_'+st.field); if(i&&i.value) ans[st.field]=i.value; });
+      ans.angle=angle;
+      var body=new URLSearchParams({ session_id:sid, site:SITE, last_field:'step-'+(cur+1), fields_reached:String(reached), extra:JSON.stringify(ans) });
+      fetch(ENGINE+'/partial',{ method:'POST', body:body, keepalive:true }).catch(function(){});
+    }catch(e){}
+  }
+
+  var form=document.getElementById('msForm');
+  if(form) form.addEventListener('submit', function(e){
+    var active=steps[cur]; var invalid=active.querySelector(':invalid');
+    if(invalid){ e.preventDefault(); if(invalid.reportValidity) invalid.reportValidity(); return; }
+    try{ gtag('event','generate_lead',{ angle: angle }); }catch(e2){}
+  });
+
+  render();
+})();
 </script>
 </body>
 </html>
