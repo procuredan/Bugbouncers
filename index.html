@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <title>Bug Bouncers | Free Pest Control Quotes — Licensed Exterminators Near You</title>
 <meta name="description" content="Get fast, free pest control quotes from licensed local exterminators. Bed bugs, termites, rodents, wildlife and animal removal, snakes, ants, roaches, mosquitoes and more — residential and commercial, nationwide." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -197,9 +198,9 @@ footer a{color:#A7BED1;display:block;margin-bottom:12px;}
 <div class="container hero-grid">
 <div>
 <div class="eyebrow">Free Pest Control Quotes • Nationwide</div>
-<h1 class="hero-title">Bugs, Rodents &amp; Wildlife —<br>
+<h1 class="hero-title" id="heroTitle">Bugs, Rodents &amp; Wildlife —<br>
 <span class="highlight">Bounced For Good.</span></h1>
-<p>Get matched with licensed local exterminators for fast, free quotes on bed bugs, termites, rodents, wildlife and animal removal, and every pest in between — homes and businesses, coast to coast.</p>
+<p id="heroSub">Get matched with licensed local exterminators for fast, free quotes on bed bugs, termites, rodents, wildlife and animal removal, and every pest in between — homes and businesses, coast to coast.</p>
 <p class="mini-proof">Residential and commercial pest control, inspections, and humane animal removal nationwide.</p>
 <div class="hero-points"><div><span>✓</span>Licensed, vetted local pest control pros</div>
 <div><span>✓</span>Fast free quotes — often same day</div>
@@ -231,8 +232,8 @@ footer a{color:#A7BED1;display:block;margin-bottom:12px;}
       <div class="ms-choices" data-target="property_type"></div>
     </div>
     <div class="ms-step" data-step="2">
-      <div class="ms-q">What's the problem?</div>
-      <div class="ms-help">Choose the main pest — or the closest.</div>
+      <div class="ms-q">What's bugging you?</div>
+      <div class="ms-help">Pick the main pest — or the closest match.</div>
       <div class="ms-choices" data-target="pest"></div>
     </div>
     <div class="ms-step" data-step="3">
@@ -258,7 +259,7 @@ footer a{color:#A7BED1;display:block;margin-bottom:12px;}
     <button type="button" class="ms-back hide" id="msBack">← Back</button>
   </div>
 </form>
-<div class="form-stats"><div class="form-stat"><strong>24/7</strong><span>Response</span></div><div class="form-stat"><strong>50</strong><span>States</span></div><div class="form-stat"><strong>100%</strong><span>Free</span></div><div class="form-stat"><strong>Licensed</strong><span>Pros</span></div></div>
+<div class="form-stats"><div class="form-stat"><strong>24/7</strong><span>Response</span></div><div class="form-stat"><strong>50</strong><span>States</span></div><div class="form-stat"><strong>No</strong><span>Obligation</span></div><div class="form-stat"><strong>Licensed</strong><span>Pros</span></div></div>
 </div>
 </div>
 </section>
@@ -266,7 +267,7 @@ footer a{color:#A7BED1;display:block;margin-bottom:12px;}
 <section class="stats">
 <div class="container stats-grid"><div class="stat"><h2><span>24/7</span></h2><p>Fast Response, Day or Night</p></div>
 <div class="stat"><h2><span>50</span></h2><p>Nationwide Coverage</p></div>
-<div class="stat"><h2><span>100%</span></h2><p>Always Free, No Obligation</p></div>
+<div class="stat"><h2><span>No</span></h2><p>No-Obligation Quotes</p></div>
 <div class="stat"><h2><span>Licensed</span></h2><p>Licensed and Vetted Exterminators</p></div></div>
 </section>
 
@@ -364,7 +365,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 <script>
 (function(){
-  var STEPS = [{"field":"property_type","options":[{"icon":"🏠","label":"Home","value":"Home"},{"icon":"🏢","label":"Apartment / Condo","value":"Apartment / Condo"},{"icon":"🏬","label":"Business / Commercial","value":"Business / Commercial"},{"icon":"❓","label":"Other","value":"Other"}]},{"field":"pest","options":[{"icon":"🛏️","label":"Bed bugs","value":"Bed Bugs"},{"icon":"🪵","label":"Termites","value":"Termites"},{"icon":"🐀","label":"Rodents (mice / rats)","value":"Rodents (Mice / Rats)"},{"icon":"🦝","label":"Wildlife / animal removal","value":"Wildlife / Animal Removal"},{"icon":"🦂","label":"Scorpions","value":"Scorpions"},{"icon":"🐜","label":"Ants","value":"Ants"},{"icon":"🪳","label":"Cockroaches","value":"Cockroaches"},{"icon":"🦟","label":"Mosquitoes / outdoor","value":"Mosquitoes / Outdoor"},{"icon":"❓","label":"Something else","value":"Other / Not Sure"}]},{"field":"urgency","options":[{"icon":"🚨","label":"Emergency — ASAP","value":"Emergency / ASAP"},{"icon":"📅","label":"Within a few days","value":"Within a few days"},{"icon":"💬","label":"Just getting quotes","value":"Just getting quotes"}]}];
+  var STEPS = [{"field":"property_type","options":[{"icon":"🏠","label":"Home","value":"Home"},{"icon":"🏢","label":"Apartment / Condo","value":"Apartment / Condo"},{"icon":"🏬","label":"Business / Commercial","value":"Business / Commercial"},{"icon":"❓","label":"Other","value":"Other"}]},{"field":"pest","options":[{"icon":"🦂","label":"Scorpions","value":"Scorpions"},{"icon":"🛏️","label":"Bed bugs","value":"Bed Bugs"},{"icon":"🪵","label":"Termites","value":"Termites"},{"icon":"🐀","label":"Rodents (mice / rats)","value":"Rodents (Mice / Rats)"},{"icon":"🪤","label":"Roof / pack rats","value":"Roof / Pack Rats"},{"icon":"🐜","label":"Ants / roaches","value":"Ants / Roaches"},{"icon":"🐝","label":"Bees / wasps","value":"Bees / Wasps"},{"icon":"🐦","label":"Pigeons / birds","value":"Pigeons / Birds"},{"icon":"🦝","label":"Wildlife removal","value":"Wildlife / Animal Removal"},{"icon":"❓","label":"Something else","value":"Other / Not Sure"}]},{"field":"urgency","options":[{"icon":"🚨","label":"Emergency — ASAP","value":"Emergency / ASAP"},{"icon":"📅","label":"Within a few days","value":"Within a few days"},{"icon":"💬","label":"Just getting quotes","value":"Just getting quotes"}]}];
   var ANGLES = null;
   var SITE = "bugbouncers.com";
   var ENGINE = "https://procure-lead-engine.dan-fda.workers.dev";
@@ -375,6 +376,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var angle = (qs.get('angle') || qs.get('utm_content') || 'default').toLowerCase();
   if (ANGLES && ANGLES[angle]) {
     var A = ANGLES[angle];
+    if (A.title_html){ var et=document.getElementById('heroTitle'); if(et) et.innerHTML=A.title_html; }
+    if (A.hero_sub) { var ehs=document.getElementById('heroSub');  if(ehs) ehs.textContent=A.hero_sub; }
     if (A.head)  { var eh=document.getElementById('msHead');     if(eh) eh.textContent=A.head; }
     if (A.sub)   { var es=document.getElementById('msSub');      if(es) es.textContent=A.sub; }
     if (A.reassure){ var er=document.getElementById('msReassure'); if(er) er.textContent=A.reassure; }
