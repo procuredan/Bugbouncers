@@ -210,7 +210,7 @@ footer a{color:#A7BED1;display:block;margin-bottom:12px;}
 </div>
 
 <div class="ms-card" id="form">
-<div class="ms-head"><h3 id="msHead">Get Your Free Pest Control Quote</h3><p id="msSub">3 quick questions. About 60 seconds. Free, no obligation.</p></div>
+<div class="ms-head"><h3 id="msHead">Get Your Free Pest Control Quote<span class="geo-tail" hidden> in <span class="geo-city"></span></span></h3><p id="msSub">3 quick questions. About 60 seconds. Free, no obligation.</p></div>
 <div class="ms-progress">
   <div class="ms-progress-meta"><span id="msStepLabel">Step 1 of 4</span><span id="msHint">Quick &amp; easy</span></div>
   <div class="ms-track"><div class="ms-bar" id="msBar"></div></div>
@@ -416,6 +416,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ans.angle=angle;
       var body=new URLSearchParams({ session_id:sid, site:SITE, last_field:'step-'+(cur+1), fields_reached:String(reached), extra:JSON.stringify(ans) });
       fetch(ENGINE+'/partial',{ method:'POST', body:body, keepalive:true }).catch(function(){});
+      try{ if(typeof gtag==='function') gtag('event','form_step',{ step_number: cur+1, step_total: total, site: SITE, angle: angle }); }catch(eg){}
     }catch(e){}
   }
 
@@ -427,6 +428,22 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   render();
+})();
+</script>
+<script>
+(function(){
+  function cap(s){return String(s||'').replace(/\b\w/g,function(c){return c.toUpperCase();});}
+  function apply(city){
+    var cs=document.querySelectorAll('.geo-city'); if(!city||!cs.length) return;
+    for(var i=0;i<cs.length;i++){ cs[i].textContent=city; }
+    var ts=document.querySelectorAll('.geo-tail'); for(var j=0;j<ts.length;j++){ ts[j].hidden=false; }
+  }
+  try{
+    fetch('/geo',{headers:{accept:'application/json'}})
+      .then(function(r){return r.ok?r.json():null;})
+      .then(function(d){ if(d&&d.city) apply(cap(d.city)); })
+      .catch(function(){});
+  }catch(e){}
 })();
 </script>
 </body>
