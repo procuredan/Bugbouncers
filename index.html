@@ -176,6 +176,14 @@ footer a{color:#A7BED1;display:block;margin-bottom:12px;}
 .ms-reassure{font-weight:700;color:var(--text);margin:2px 0 14px;font-size:15px;}
 .ms-submit{width:100%;display:flex;justify-content:center;margin-top:14px;padding:18px 24px;font-size:18px;}
 .ms-privacy{display:block;margin-top:10px;font-size:12px;color:#8A97A5;text-align:center;}
+.ms-consent{display:flex;gap:9px;align-items:flex-start;margin-top:12px;text-align:left;}
+.ms-consent>input{margin-top:3px;width:16px;height:16px;flex:0 0 auto;accent-color:var(--cta);cursor:pointer;}
+.ms-consent>span{font-size:11.5px;line-height:1.45;color:#7B8794;}
+.ms-consent a{color:var(--cta);}
+.ms-consent-d{display:inline;}
+.ms-consent-d summary{cursor:pointer;color:var(--cta);font-weight:600;list-style:none;}
+.ms-consent-d summary::-webkit-details-marker{display:none;}
+.ms-consent-d>span{display:block;margin-top:5px;color:#8A97A5;}
 .ms-back{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:13px;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;font-family:inherit;}
 .ms-back:hover{color:var(--navy);}
 .ms-back.hide{display:none;}
@@ -254,7 +262,9 @@ footer a{color:#A7BED1;display:block;margin-bottom:12px;}
       <script>(function(){var d=document.currentScript.previousElementSibling,k=d&&d.getAttribute('data-sitekey');if(k&&k.indexOf('{{')<0&&k.length>5){var s=document.createElement('script');s.src='https://challenges.cloudflare.com/turnstile/v0/api.js';s.async=s.defer=true;document.head.appendChild(s);}else if(d){d.style.display='none';}})();</script>
       <button class="btn btn-primary ms-submit" type="submit">Get My Free Quote →</button>
       <span class="ms-privacy">🔒 Your information is never sold or shared.</span>
-      <div class="tcpa">By clicking "Get My Free Quote," you expressly consent to be contacted by Bug Bouncers and its pest control service partners regarding pest control and removal services by phone, text message, and email, including through automated technology and prerecorded messages. Consent is not required as a condition of purchase.</div>
+      <label class="ms-consent"><input type="checkbox" name="sms_consent" value="yes" required>
+        <span>Text me about my quote. Consent isn't required to buy. Msg &amp; data rates may apply; reply STOP to opt out, HELP for help. <details class="ms-consent-d"><summary>Details</summary><span>By checking this box, I agree to receive recurring automated text messages from Bug Bouncers about my pest-control request at the mobile number I provide. Message frequency varies. Reply STOP to opt out, HELP for help. My mobile number and opt-in are never shared. See <a href="/privacy-policy.html">Privacy Policy</a> and <a href="/terms.html">Terms</a>.</span></details></span>
+      </label>
     </div>
     <button type="button" class="ms-back hide" id="msBack">← Back</button>
   </div>
