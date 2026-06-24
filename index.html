@@ -437,6 +437,21 @@ document.addEventListener("DOMContentLoaded", function () {
     try{ gtag('event','generate_lead',{ angle: angle }); }catch(e2){}
   });
 
+  // Field-level progress (cradle-to-grave standard): fire GA4 form_progress + a /partial ping
+  // the first time each contact field is filled. Records WHICH field a visitor reached — no raw PII to D1.
+  if(form){
+    var _seen={};
+    Array.prototype.forEach.call(form.querySelectorAll('input[name], select[name]'), function(el){
+      var n=el.name; if(!n || n.charAt(0)==='_' || el.type==='hidden') return;
+      el.addEventListener('change', function(){
+        if((el.value||'').trim() && !_seen[n]){ _seen[n]=true;
+          try{ if(typeof gtag==='function') gtag('event','form_progress',{ field_name:n, site:SITE, angle:angle }); }catch(e){}
+          ping();
+        }
+      });
+    });
+  }
+
   render();
 })();
 </script>
