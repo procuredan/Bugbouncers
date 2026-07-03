@@ -69,6 +69,9 @@
   --text:#14241E;
   --muted:#5E7268;
   --line:#E1EFE7;
+  --nav-bg:rgba(255,255,255,.96);
+  --nav-txt:var(--navy);
+  --nav-line:var(--line);
   --radius:18px;
   --shadow:0 12px 30px rgba(0,0,0,.08);
   --container:1180px;
@@ -79,12 +82,13 @@ body{font-family:'Inter',sans-serif;color:var(--text);background:#fff;line-heigh
 .container{width:100%;max-width:var(--container);margin:auto;padding:0 24px;}
 a{text-decoration:none;}
 img{max-width:100%;}
-.nav{position:sticky;top:0;z-index:999;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.nav{position:sticky;top:0;z-index:999;background:var(--nav-bg);backdrop-filter:blur(10px);border-bottom:1px solid var(--nav-line);}
 .nav-inner{height:82px;display:flex;align-items:center;justify-content:space-between;}
 .logo{display:flex;align-items:center;gap:12px;font-weight:800;color:var(--navy);font-size:24px;}
 .logo-box{width:42px;height:42px;border-radius:10px;background:var(--navy);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:800;}
+.logo-img{height:50px;width:auto;display:block;}
 .nav-actions{display:flex;align-items:center;gap:24px;}
-.nav-phone{font-weight:800;font-size:18px;color:var(--navy);white-space:nowrap;letter-spacing:.2px;}
+.nav-phone{font-weight:800;font-size:18px;color:var(--nav-txt);white-space:nowrap;letter-spacing:.2px;}
 .nav-phone:hover{color:var(--cta);}
 @media(max-width:600px){.nav-inner{height:64px;}.nav-actions{gap:14px;}.nav-actions .btn{display:none;}.nav-phone{font-size:16px;}}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 28px;border-radius:12px;font-weight:800;transition:.2s ease;}
@@ -95,7 +99,7 @@ img{max-width:100%;}
 .eyebrow{display:inline-block;background:rgba(244,166,33,.16);color:var(--gold);padding:8px 16px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
 .hero-title{font-size:clamp(40px,4.8vw,64px);line-height:1.08;font-weight:800;letter-spacing:-1.5px;margin:22px 0;max-width:720px;}
 .highlight{color:var(--gold);}
-.hero p{font-size:20px;color:#D3DCE7;max-width:700px;}
+#heroSub{font-size:20px;color:#D3DCE7;max-width:700px;}
 .hero-points{margin:28px 0;display:grid;gap:14px;}
 .hero-points div{display:flex;align-items:flex-start;gap:12px;color:#fff;font-size:16px;}
 .hero-points span{color:var(--gold);font-weight:800;}
@@ -201,6 +205,18 @@ footer a{color:#A7BED1;display:block;margin-bottom:12px;}
 .ms-back.hide{display:none;}
 .ms-card .form-stats{border:none;border-top:1px solid var(--line);border-radius:0;margin:0;}
 .ms-card select{-webkit-appearance:none;appearance:none;padding-right:44px;cursor:pointer;background-image:url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='12'%20height='8'%20viewBox='0%200%2012%208'%3E%3Cpath%20d='M1%201l5%205%205-5'%20stroke='%236E7A8A'%20stroke-width='2'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;background-size:12px 8px;}
+/* ---- shared SMS opt-in / consent block (lib/consent.mjs) ---- */
+.pm-consent{display:flex;gap:9px;align-items:flex-start;margin:12px 0 0;text-align:left;cursor:pointer;}
+.pm-consent>input{margin-top:3px;width:16px;height:16px;flex:0 0 auto;accent-color:var(--cta);cursor:pointer;}
+.pm-consent>span{font-size:12px;line-height:1.5;color:#5E6B78;}
+.pm-consent-submit{margin:12px 0 0;font-size:11.5px;line-height:1.5;color:#7B8794;text-align:left;}
+.pm-consent-terms{margin:8px 0 0;font-size:10.5px;line-height:1.5;color:#9AA6B2;text-align:left;}
+.pm-consent-terms a,.pm-consent a{color:var(--cta);}
+.pm-consent-d{display:inline;}
+.pm-consent-d summary{cursor:pointer;color:var(--cta);font-weight:600;list-style:none;}
+.pm-consent-d summary::-webkit-details-marker{display:none;}
+.pm-consent-d>span{display:block;margin-top:5px;color:#8A97A5;}
+
 </style>
 </head>
 <body>
@@ -270,13 +286,13 @@ footer a{color:#A7BED1;display:block;margin-bottom:12px;}
         <div><input type="tel" name="phone" placeholder="Phone Number" autocomplete="tel" inputmode="tel" pattern="[\d\s\-\(\)\.]{10,20}" required></div>
         <div class="full"><input type="text" name="address" placeholder="Property Address or City" required></div>
       </div>
+      <label class="pm-consent"><input type="checkbox" name="sms_consent" value="yes"><span>Yes, text me about my request. By checking this box, I agree to receive SMS text messages about my service request, appointment scheduling, and related follow-ups from BugBouncers (Procure Media, LLC) at the phone number I provided, including messages sent using automated technology. Msg &amp; data rates may apply. Message frequency varies.</span></label>
       <div class="cf-turnstile" data-sitekey="" data-size="flexible" style="margin:14px 0 4px"></div>
       <script>(function(){var d=document.currentScript.previousElementSibling,k=d&&d.getAttribute('data-sitekey');if(k&&k.indexOf('{{')<0&&k.length>5){var s=document.createElement('script');s.src='https://challenges.cloudflare.com/turnstile/v0/api.js';s.async=s.defer=true;document.head.appendChild(s);}else if(d){d.style.display='none';}})();</script>
       <button class="btn btn-primary ms-submit" type="submit">Get My Free Quote →</button>
-      <span class="ms-privacy">🔒 Your information is never sold or shared.</span>
-      <label class="ms-consent"><input type="checkbox" name="sms_consent" value="yes" required>
-        <span>Text me about my quote. Consent isn't required to buy. Msg &amp; data rates may apply; reply STOP to opt out, HELP for help. <details class="ms-consent-d"><summary>Details</summary><span>By checking this box, I agree to receive recurring automated text messages from Bug Bouncers about my pest-control request at the mobile number I provide. Message frequency varies. Reply STOP to opt out, HELP for help. My mobile number and opt-in are never shared. See <a href="/privacy-policy.html">Privacy Policy</a> and <a href="/terms.html">Terms</a>.</span></details></span>
-      </label>
+      <p class="pm-consent-submit">By submitting, you agree to be contacted about your request by BugBouncers (Procure Media, LLC) and the pest control providers it works with, by phone call and email, including via automated technology. Consent is not a condition of purchase.</p>
+      <p class="pm-consent-terms">SMS terms: If you check the box above, message frequency varies and Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. SMS consent is not a condition of purchase. See our <a href="/privacy-policy.html">Privacy Policy</a> and <a href="/terms.html">Terms</a>.</p>
+      <input type="hidden" name="consent_version" value="bb-sms-v1-2026-06-29">
     </div>
     <button type="button" class="ms-back hide" id="msBack">← Back</button>
   </div>
@@ -346,7 +362,7 @@ footer a{color:#A7BED1;display:block;margin-bottom:12px;}
 <div class="container">
 <div class="footer-grid">
 <div>
-<div class="logo" style="color:#fff;margin-bottom:20px"><div class="logo-box">🐞</div>Bug Bouncers</div>
+<div class="logo" style="margin-bottom:20px"><div class="logo-box">🐞</div>Bug Bouncers</div>
 <p>Free pest control quotes from licensed local exterminators. Bed bugs, termites, rodents, wildlife and animal removal, and every pest in between — residential and commercial, nationwide.</p>
 </div>
 <div><h4>Services</h4><a href="/bed-bug-treatment">Bed Bug Treatment</a>

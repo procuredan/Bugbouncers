@@ -155,6 +155,18 @@ footer a{color:#fff;margin:0 7px;font-weight:600;}
 .pf-privacy{display:block;margin-top:10px;font-size:12px;color:#8A97A5;text-align:center;}
 .pf-tcpa{margin-top:12px;font-size:10.5px;line-height:1.45;color:#9AA6B2;}
 
+/* ---- shared SMS opt-in / consent block (lib/consent.mjs) ---- */
+.pm-consent{display:flex;gap:9px;align-items:flex-start;margin:12px 0 0;text-align:left;cursor:pointer;}
+.pm-consent>input{margin-top:3px;width:16px;height:16px;flex:0 0 auto;accent-color:var(--cta);cursor:pointer;}
+.pm-consent>span{font-size:12px;line-height:1.5;color:#5E6B78;}
+.pm-consent-submit{margin:12px 0 0;font-size:11.5px;line-height:1.5;color:#7B8794;text-align:left;}
+.pm-consent-terms{margin:8px 0 0;font-size:10.5px;line-height:1.5;color:#9AA6B2;text-align:left;}
+.pm-consent-terms a,.pm-consent a{color:var(--cta);}
+.pm-consent-d{display:inline;}
+.pm-consent-d summary{cursor:pointer;color:var(--cta);font-weight:600;list-style:none;}
+.pm-consent-d summary::-webkit-details-marker{display:none;}
+.pm-consent-d>span{display:block;margin-top:5px;color:#8A97A5;}
+
 </style>
 </head>
 <body class="urgent">
@@ -219,11 +231,13 @@ footer a{color:#fff;margin:0 7px;font-weight:600;}
       <label class="pf-field"><input type="tel" name="phone" placeholder="Phone number" autocomplete="tel" inputmode="tel" pattern="[\d\s\-\(\)\.]{10,20}" required></label>
       <label class="pf-field"><input type="email" name="email" placeholder="Email address" autocomplete="email" required></label>
     </div>
+    <label class="pm-consent"><input type="checkbox" name="sms_consent" value="yes"><span>Yes, text me about my request. By checking this box, I agree to receive SMS text messages about my service request, appointment scheduling, and related follow-ups from BugBouncers (Procure Media, LLC) at the phone number I provided, including messages sent using automated technology. Msg &amp; data rates may apply. Message frequency varies.</span></label>
     <div class="cf-turnstile" data-sitekey="" data-size="flexible" style="margin:12px 0 2px"></div>
     <script>(function(){var d=document.currentScript.previousElementSibling,k=d&&d.getAttribute('data-sitekey');if(k&&k.indexOf('{{')<0&&k.length>5){var s=document.createElement('script');s.src='https://challenges.cloudflare.com/turnstile/v0/api.js';s.async=s.defer=true;document.head.appendChild(s);}else if(d){d.style.display='none';}})();</script>
     <button class="pf-submit" type="submit">Get My Free Quote →</button>
-    <span class="pf-privacy">&#128274; Your information is never sold or shared.</span>
-    <div class="pf-tcpa">By clicking "Get My Free Quote," you expressly consent to be contacted by Bug Bouncers and its pest control service partners regarding pest control and removal services by phone, text message, and email, including through automated technology and prerecorded messages. Consent is not required as a condition of purchase.</div>
+    <p class="pm-consent-submit">By submitting, you agree to be contacted about your request by BugBouncers (Procure Media, LLC) and the pest control providers it works with, by phone call and email, including via automated technology. Consent is not a condition of purchase.</p>
+    <p class="pm-consent-terms">SMS terms: If you check the box above, message frequency varies and Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. SMS consent is not a condition of purchase. See our <a href="/privacy-policy.html">Privacy Policy</a> and <a href="/terms.html">Terms</a>.</p>
+    <input type="hidden" name="consent_version" value="bb-sms-v1-2026-06-29">
   </form>
 </div>
   </div>
